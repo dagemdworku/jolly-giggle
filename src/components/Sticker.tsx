@@ -4,6 +4,9 @@ import React, { useRef, useEffect } from 'react';
 
 const Sticker = ({ text }: { text: string }) => {
     const canvasRef = useRef(null);
+    const colors = ['red', 'brown', 'green', 'blue'];
+
+    const font = '30px Comic Sans MS';
 
     useEffect(() => {
         if (!canvasRef?.current) return;
@@ -12,26 +15,12 @@ const Sticker = ({ text }: { text: string }) => {
         const context = canvas.getContext('2d');
         if (!context) return;
 
-        // Set canvas dimensions
-        canvas.width = 300;
-        canvas.height = 300;
-
-        // Draw a circle
-        context.beginPath();
-        context.arc(150, 150, 140, 0, 2 * Math.PI);
-        context.fillStyle = '#FFD700'; // Gold
-        context.fill();
-
-        // Write the text
-        context.font = '20px Arial';
-        context.textAlign = 'center';
-        context.fillStyle = '#000000'; // Black
-
-        // Word wrap
+        canvas.width = 500;
         const words = text.split(' ');
         const lines = [];
         let currentLine = words[0];
 
+        context.font = font;
         for (let i = 1; i < words.length; i++) {
             let word = words[i];
             let width = context.measureText(currentLine + " " + word).width;
@@ -44,12 +33,62 @@ const Sticker = ({ text }: { text: string }) => {
         }
         lines.push(currentLine);
 
-        // Write each line
         const lineHeight = context.measureText("M").width * 1.5;
-        let x = canvas.width / 2;
-        let y = canvas.height / 2 - (lines.length - 1) / 2 * lineHeight;
+        canvas.height = lines.length * lineHeight + 120;
+
+        const waveStrength = 10;
+        const margin = 40;
+        const waveDistance = 50;
+
+        function generateWavePoints(start: number, end: number, horizontal: boolean, reverse: boolean, offset: number = 0) {
+            const points = [];
+            const step = waveDistance;
+            for (let i = start; i < end; i += step) {
+                const wavePitch = Math.random() * 5 + 5;
+                const wavePoint = waveStrength * Math.sin((i - start) / wavePitch) + waveStrength;
+                points.push({
+                    x: horizontal ? i : wavePoint + offset,
+                    y: horizontal ? wavePoint + offset : i
+                });
+            }
+            if (reverse) points.reverse();
+            return points;
+        }
+
+        context.beginPath();
+
+        const topPoints = generateWavePoints(margin, canvas.width - margin, true, false);
+        const rightPoints = generateWavePoints(margin, canvas.height - margin, false, false, canvas.width - margin);
+        const bottomPoints = generateWavePoints(margin, canvas.width - margin, true, true, canvas.height - margin);
+        const leftPoints = generateWavePoints(margin, canvas.height - margin, false, true);
+
+        [topPoints, rightPoints, bottomPoints, leftPoints].forEach(points => {
+            points.forEach(point => {
+                context.lineTo(point.x + margin / 4, point.y + margin / 4);
+            });
+        });
+
+        context.closePath();
+
+        context.shadowColor = 'black';
+        context.shadowBlur = 10;
+
+        context.fillStyle = colors[Math.floor(Math.random() * colors.length)];
+        context.fill();
+
+        context.shadowColor = 'transparent';
+
+        context.strokeStyle = '#FFFFFF';
+        context.lineWidth = 5;
+        context.stroke();
+
+
+        context.textAlign = 'center';
+        context.fillStyle = '#FFFFFF';
+        let y = (canvas.height - lines.length * lineHeight) / 2 + lineHeight;
         for (let i = 0; i < lines.length; i++) {
-            context.fillText(lines[i], x, y);
+            context.font = font;
+            context.fillText(lines[i], canvas.width / 2, y);
             y += lineHeight;
         }
 
