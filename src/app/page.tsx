@@ -46,7 +46,7 @@ export default function Home() {
     <div className="flex flex-col min-h-screen justify-between p-24">
       <header className="text-center">
         <h1 className="text-4xl font-bold">Welcome to JollyGiggle, Your Daily Dose of Joy! 😄</h1>
-        <p className="mt-2 text-xl">Click the button to reveal today's joke! 🎉</p>
+        <p className="mt-2 text-xl">Click the button to reveal today&apos;s joke! 🎉</p>
       </header>
 
       <main className="flex flex-col items-center justify-center">
