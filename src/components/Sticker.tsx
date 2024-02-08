@@ -14,7 +14,6 @@ const Sticker = ({ text }: { text: string }) => {
         '#FFD1DC', // Pink Sherbet
         '#D1A3A4', // Tumbleweed
         '#AEC6CF', // Pastel Blue
-        '#FDFD96', // Pastel Yellow
         '#B39EB5', // Thistle
         '#FF6961', // Pastel Red
         '#77DD77', // Pastel Green
