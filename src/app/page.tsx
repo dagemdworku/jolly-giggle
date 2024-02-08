@@ -52,7 +52,7 @@ export default function Home() {
       <main className="flex flex-col items-center justify-center">
         {joke && <Sticker text={joke} />}
         <button onClick={updateJoke} className={`mt-8 px-6 py-3 rounded-full font-bold text-xl transition-colors duration-300 ${ctaStyle}`} disabled={isLoading}>
-          {isLoading ? 'Working on it' : joke ? 'Another One' : 'Click Me'}
+          {isLoading ? 'Working on it...' : joke ? 'Another One' : 'Click Me'}
         </button>
       </main>
 
