@@ -5,11 +5,37 @@ import React, { useState } from "react";
 
 export default function Home() {
   const [joke, setJoke] = useState("");
-  const updateJoke = () => {
-    const joke = "Why don't scientists trust atoms? Because they make up everything!";
+  const fallbackJock = "Why don't scientists trust atoms? Because they make up everything!";
 
-    setJoke(joke);
+  const updateJoke = async () => {
+    const url = '/api/joke';
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    };
+
+    try {
+      const response = await fetch(url, options);
+      const data = await response.json();
+
+      if (!data?.candidates?.length ||
+        !data.candidates[0] ||
+        !data.candidates[0].content ||
+        !data.candidates[0].content.parts ||
+        !data.candidates[0].content.parts.length ||
+        !data.candidates[0].content.parts[0] ||
+        !data.candidates[0].content.parts[0].text) {
+        throw new Error('Invalid data');
+      }
+      setJoke(data.candidates[0].content.parts[0].text);
+    } catch (error) {
+      console.error('An error occurred while fetching the joke:', error);
+      setJoke(fallbackJock);
+    }
   }
+
   return (
     <div className="flex flex-col min-h-screen justify-between p-24">
       <header className="text-center">
