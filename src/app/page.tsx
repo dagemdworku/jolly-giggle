@@ -31,7 +31,8 @@ export default function Home() {
         !data.candidates[0].content.parts[0].text) {
         throw new Error('Invalid data');
       }
-      setJoke(data.candidates[0].content.parts[0].text);
+      const joke = data.candidates[0].content.parts[0].text;
+      setJoke(joke.replace(/[^a-zA-Z0-9.,\s?!]/g, '').trim());
     } catch (error) {
       console.error('An error occurred while fetching the joke:', error);
       setJoke(fallbackJock);
