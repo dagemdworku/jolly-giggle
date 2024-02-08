@@ -41,7 +41,7 @@ export default function Home() {
     }
   }
 
-  const ctaStyle = isLoading ? 'text-gray-500' : 'text-white bg-blue-500 hover:bg-blue-700';
+  const ctaStyle = isLoading ? 'text-gray-500 dark:text-gray-100' : 'text-white bg-blue-500 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-500';
 
   return (
     <div className="flex flex-col min-h-screen justify-between p-24">
@@ -58,7 +58,7 @@ export default function Home() {
       </main>
 
       <footer className="text-center mt-8">
-        <p className="text-sm text-gray-600">© {new Date().getFullYear()} JollyGiggle. All rights reserved. 📝</p>
+        <p className="text-sm text-gray-600 dark:text-gray-300">© {new Date().getFullYear()} JollyGiggle. All rights reserved. 📝</p>
       </footer>
     </div>
   );
