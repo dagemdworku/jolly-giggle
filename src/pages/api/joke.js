@@ -1,6 +1,6 @@
 // pages/api/joke.js
 export default async function handler(req, res) {
-    const prompt = "Tell me a joke!";
+    const prompt = "Tell me a super funny joke!";
 
     const apiKey = process.env.GENERATIVE_LANGUAGE_API_KEY;
     const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`;
