@@ -55,10 +55,25 @@ const Sticker = ({ text }: { text: string }) => {
 
     }, [text]);
 
+    const downloadSticker = () => {
+        if (!canvasRef?.current) return;
+        const canvas = canvasRef.current as HTMLCanvasElement;
+
+        const image = canvas.toDataURL('image/png');
+        const link = document.createElement('a');
+
+        link.href = image;
+        link.download = 'sticker.png';
+        link.click();
+    };
+
 
     return (
         <div className="flex flex-col items-center justify-center">
             <canvas ref={canvasRef} />
+            <button onClick={downloadSticker} className="mt-8 px-6 py-3 bg-blue-500 text-white rounded-full font-bold text-xl hover:bg-blue-700 transition-colors duration-300">
+                Download Sticker
+            </button>
         </div>
     );
 };
