@@ -44,7 +44,7 @@ export default function Home() {
   const ctaStyle = isLoading ? 'text-gray-500 dark:text-gray-100' : 'text-white bg-blue-500 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-500';
 
   return (
-    <div className="flex flex-col min-h-screen justify-between p-24">
+    <div className="flex flex-col min-h-screen justify-between p-6 sm:p-10 md:p-16 lg:p-24">
       <header className="text-center">
         <h1 className="text-4xl font-bold">Welcome to JollyGiggle, Your Daily Dose of Joy! 😄</h1>
         <p className="mt-2 text-xl">Click the button to reveal today&apos;s joke! 🎉</p>
