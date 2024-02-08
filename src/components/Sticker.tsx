@@ -124,7 +124,7 @@ const Sticker = ({ text }: { text: string }) => {
     return (
         <div className="flex flex-col items-center justify-center">
             <canvas ref={canvasRef} />
-            <button onClick={downloadSticker} className="mt-8 px-6 py-3 font-medium text-xl bg-transparent text-blue-500 hover:text-white rounded-full hover:bg-blue-700 transition-colors duration-300 flex items-center">
+            <button onClick={downloadSticker} className="mt-8 px-6 py-3 font-medium text-xl bg-transparent text-blue-500 dark:text-gray-200 hover:text-white rounded-full hover:bg-blue-700 dark:hover:bg-blue-500 transition-colors duration-300 flex items-center">
                 Download Sticker
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-6 w-6 ml-2">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
