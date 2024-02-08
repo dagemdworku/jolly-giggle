@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Sticker from "@/components/Sticker";
 
 export default function Home() {
   return (
@@ -9,14 +9,7 @@ export default function Home() {
       </header>
 
       <main className="flex flex-col items-center justify-center">
-        <Image
-          src="/vercel.svg"
-          alt="Vercel Logo"
-          className="dark:invert"
-          width={100}
-          height={100}
-          priority
-        />
+        <Sticker text="Why don't scientists trust atoms? Because they make up everything!" />
         <button className="mt-8 px-6 py-3 bg-blue-500 text-white rounded-full font-bold text-xl hover:bg-blue-700 transition-colors duration-300">
           Another One
         </button>
